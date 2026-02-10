@@ -1,24 +1,30 @@
 {
   "manifest_version": 3,
   "name": "Bible Quotes – Daily Verses & Christian Inspiration",
-  "version": "1.0",
-  "description": "Daily Bible verses for inspiration and faith. Receive scripture notifications and save your favorite Bible quotes.",
+  "short_name": "DailyBible",
+  "version": "1.0.1",
+  "description": "Start your day with Daily Bible Verses and Christian inspiration. Get scripture notifications, morning devotions, and save holy quotes.",
+  "icons": {
+    "100": "icon/icon100.png",
+    "48": "icon/icon48.png",
+    "128": "icon/icon128.png"
+  },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "100": "icon/icon100.png",
+      "48": "icon/icon48.png",
+      "128": "icon/icon128.png"
+    }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
-  "permissions": ["storage", "notifications", "alarms"],
-  "icons": {
-    "16": "icon/icon48.png",
-    "48": "icon/icon48.png",
-    "128": "icon/icon48.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["quotes.json"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms"
+  ],
+  "offline_enabled": true
 }

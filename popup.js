@@ -129,3 +129,41 @@ themeToggle.addEventListener("click", () => {
   themeToggle.textContent =
     document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
+
+/* Add these to your Elements section at the top */
+const shareBtn = document.getElementById("shareBtn");
+const rateBtn = document.getElementById("rateBtn");
+
+/* --- 1. Rating Redirect Function --- */
+rateBtn.addEventListener("click", () => {
+  // Replace YOUR_EXTENSION_ID with your actual Chrome Web Store ID
+  const extensionId = chrome.runtime.id; 
+  const rateUrl = `https://chromewebstore.google.com/detail/bible-quotes-%E2%80%93-daily-vers/fhooenpolhbnaloblddemhecipkdhojc/reviews`;
+  window.open(rateUrl, "_blank");
+});
+
+/* --- 2. Share Functionality --- */
+shareBtn.addEventListener("click", async () => {
+  const currentQuote = quotes[index];
+  const shareText = `"${currentQuote.text}" — ${currentQuote.ref}\n\nShared via Bible Daily Extension ✝️`;
+
+  // Try using the native Web Share API (works on most modern browsers)
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'Daily Bible Verse',
+        text: shareText,
+      });
+    } catch (err) {
+      console.log("Share cancelled or failed");
+    }
+  } else {
+    // Fallback: Copy to clipboard
+    navigator.clipboard.writeText(shareText);
+    const originalText = shareBtn.textContent;
+    shareBtn.textContent = "✅ Copied!";
+    setTimeout(() => {
+      shareBtn.textContent = originalText;
+    }, 2000);
+  }
+});

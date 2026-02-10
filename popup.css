@@ -137,4 +137,26 @@ body.dark .fav-toggle {
   background: #333;
   color: #fff;
 }
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 6px;
+}
 
+.action-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.action-item:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
